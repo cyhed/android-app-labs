@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sPref;
-    private boolean Auth;
+    private boolean Auth = false;
     private EditText numberET, fNameET, sNameET;
     private Button login;
 
@@ -34,17 +34,13 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.regb);
 
         sPref = getPreferences(MODE_PRIVATE);
-        String auth = sPref.getString("sNameET", "");
+        String auth = sPref.getString("auth", "");
 
         if (auth.equals("true")){
             loadDataRegistration();
             Auth =true;
             login.setText("LOGIN");
         }
-
-
-
-
 
 
 

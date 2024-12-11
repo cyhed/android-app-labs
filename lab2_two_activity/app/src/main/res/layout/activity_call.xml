@@ -32,16 +32,17 @@
             android:onClick="setPathOnClick"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/pathTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/callBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="call"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:onClick="CallClick"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

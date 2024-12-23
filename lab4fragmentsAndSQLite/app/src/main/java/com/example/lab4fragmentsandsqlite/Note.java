@@ -5,35 +5,34 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Product implements Parcelable {
+public class Note implements Parcelable {
     private String article;
     private String name;
-    private float cost;
-    private boolean check = false;
+    private String description;
 
-    public Product(String article, String name, float cost){
+
+    public Note(String article, String name, String description){
         this.article = article;
         this.name = name;
-        this.cost = cost;
+        this.description = description;
 
     }
 
-    protected Product(Parcel in) {
+    protected Note(Parcel in) {
         article = in.readString();
         name = in.readString();
-        cost = in.readFloat();
-        check = in.readByte() != 0;
+        description = in.readString();
     }
 
-    public static final Creator<Product> CREATOR = new Creator<Product>() {
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
         @Override
-        public Product createFromParcel(Parcel in) {
-            return new Product(in);
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
         }
 
         @Override
-        public Product[] newArray(int size) {
-            return new Product[size];
+        public Note[] newArray(int size) {
+            return new Note[size];
         }
     };
 
@@ -43,25 +42,16 @@ public class Product implements Parcelable {
     public String getName() {
         return name;
     }
-    public float getCost() {
-        return cost;
-    }
-    public boolean getCheck() {
-        return check;
-    }
+    public String getDescription(){return description;}
+
     public void setArticle(String article) {
         this.article = article;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
-    public void setCheck(boolean check) {
-        this.check = check;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -73,7 +63,6 @@ public class Product implements Parcelable {
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(article);
         dest.writeString(name);
-        dest.writeFloat(cost);
-        dest.writeByte((byte) (check ? 1 : 0));
+        dest.writeString(description);
     }
 }

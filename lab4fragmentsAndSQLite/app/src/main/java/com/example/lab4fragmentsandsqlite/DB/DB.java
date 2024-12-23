@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 //вспомогательный класс DB для работы с таблицей товаров.
 public class DB {
-    private static final String DB_NAME = "mydb";
+    private static final String DB_NAME = "mynotes";
     private static final int DB_VERSION = 1;
-    private static final String DB_TABLE = "goods";
+    private static final String DB_TABLE = "notes";
     private final Context mCtx;
     private DBHelper mDBHelper;
     private SQLiteDatabase mDB;
@@ -29,7 +29,7 @@ public class DB {
         int i=0;
         while (i<25) {
             i++;
-            addRec("My good №" + i, i, i);
+            addRec("My good №" + i, "desc"+ i   );
         }
     }
     // получить все данные из таблицы DB_TABLE
@@ -37,19 +37,17 @@ public class DB {
         return mDB.query(DB_TABLE, null, null, null, null, null, null);
     }
     // добавить запись в DB_TABLE
-    public void addRec(String name, int price, int count) {
+    public void addRec(String name, String description) {
         ContentValues cv = new ContentValues();
         cv.put("name", name);
-        cv.put("price", price);
-        cv.put("count", count);
+        cv.put("description", description);
         mDB.insert(DB_TABLE, null, cv);
     }
     // обновить запись в DB_TABLE
-    public void update(int id, String name, int price, int count) {
+    public void update(int id, String name, String description) {
         ContentValues cv = new ContentValues();
         cv.put("name", name);
-        cv.put("price", price);
-        cv.put("count", count);
+        cv.put("description", description);
         mDB.update(DB_TABLE, cv, "id = ?",
                 new String[]{String.valueOf(id)});
     }

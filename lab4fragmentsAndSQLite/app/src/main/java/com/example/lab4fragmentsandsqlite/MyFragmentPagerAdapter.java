@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.lab4fragmentsandsqlite.DB.DB;
 import com.example.lab4fragmentsandsqlite.Fragments.AddFragment;
 import com.example.lab4fragmentsandsqlite.Fragments.DelFragment;
 import com.example.lab4fragmentsandsqlite.Fragments.ShowFragment;
@@ -11,16 +12,18 @@ import com.example.lab4fragmentsandsqlite.Fragments.UpdateFragment;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     static final int PAGE_COUNT = 4;
-    public MyFragmentPagerAdapter(FragmentManager fm) {
+    private DB db;
+    public MyFragmentPagerAdapter(FragmentManager fm, DB db) {
         super(fm);
+        this.db = db;
     }
     @Override
     public Fragment getItem(int i) {
         switch (i){
-            case 0: return new ShowFragment();
-            case 1: return new AddFragment();
-            case 2: return new DelFragment();
-            case 3: return new UpdateFragment();
+            case 0: return new ShowFragment(db);
+            case 1: return new AddFragment(db);
+            case 2: return new DelFragment(db);
+            case 3: return new UpdateFragment(db);
             default: return null;
         }
     }
